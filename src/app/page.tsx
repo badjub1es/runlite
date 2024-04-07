@@ -20,14 +20,12 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Run<span className={styles.pinkSpan}>lite</span>
+          run<span className={styles.pinkSpan}>lite</span>
         </h1>
         <div {...getRootProps()}>
           <div>
             <input {...getInputProps()} />
-            <div className={styles.dropzone}>
-              <div className={styles.dropzoneContainer}>Drop here!</div>
-            </div>
+              <div className={styles.dropzoneContainer}>Drop or select file</div>
           </div>
         </div>
       </div>
