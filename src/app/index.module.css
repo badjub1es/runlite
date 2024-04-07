@@ -5,7 +5,6 @@
   justify-content: center;
   min-height: 100vh;
   background-image: linear-gradient(to bottom, #1d4ed8, #15162c);
-  /* background-image: linear-gradient(to bottom, #2e026d, #15162c); */
 }
 
 .container {
@@ -188,4 +187,22 @@
   border: 2px dashed white;
   color: white;
   cursor: pointer;
+}
+
+.dropzoneContainer:hover {
+  animation: border-pulsate 2s infinite;
+}
+
+@keyframes border-pulsate {
+  0% {
+    border-color: #fef08a;
+    color: #fef08a;
+  }
+  50% {
+    border-color: rgba(0, 255, 255, 0);
+    color: rgba(0, 255, 255, 0);
+  }
+  100% {
+    border-color: white;
+  }
 }
