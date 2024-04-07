@@ -1,15 +1,20 @@
 "use client";
 
-import styles from "./index.module.css";
 import React from "react";
+import styles from "./index.module.css";
 import { useDropzone } from "react-dropzone";
 
+interface DropzoneFile extends File {
+  size: number;
+  path?: string;
+}
+
 export default function Home() {
-  const onDrop = React.useCallback((acceptedFiles) => {
-    // Do something with the files
+  const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
     console.log(acceptedFiles);
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
     <main className={styles.main}>
