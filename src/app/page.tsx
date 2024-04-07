@@ -20,7 +20,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          run<span className={styles.lightBlueSpan}>lite</span>
+          run<span className={styles.yellowSpan}>lite</span>
         </h1>
         <div {...getRootProps()}>
           <div>
