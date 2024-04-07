@@ -3,13 +3,10 @@
 import React from "react";
 import styles from "./index.module.css";
 import { useDropzone } from "react-dropzone";
-
-interface DropzoneFile extends File {
-  size: number;
-  path?: string;
-}
+import { DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 
 export default function Home() {
+
   const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
     console.log(acceptedFiles);
   }, []);
