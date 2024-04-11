@@ -17,7 +17,7 @@ export default function FileDropZone() {
     <div {...getRootProps()}>
       <div>
         <input {...getInputProps()} />
-        <div className={styles.dropzoneContainer}>Drop or select file</div>
+        <button className={styles.dropzoneContainer}>Drop / select file</button>
       </div>
     </div>
   );

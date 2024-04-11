@@ -56,6 +56,15 @@
   color: white;
 }
 
+.subTitle {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: white;
+}
+
 @media (min-width: 640px) {
   .title {
     font-size: 5rem;
@@ -189,7 +198,21 @@
   cursor: pointer;
 }
 
+.generateFileContainer {
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+}
+
 .dropzoneContainer:hover {
+  animation: border-pulsate 2s infinite;
+}
+
+.generateFileContainer:hover {
   animation: border-pulsate 2s infinite;
 }
 
