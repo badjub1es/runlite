@@ -2,6 +2,7 @@ import React from "react";
 import styles from "~/app/index.module.css";
 import { useDropzone } from "react-dropzone";
 import { DropzoneFile } from "~/types/Dropzone/DropzoneFile";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 export default function FileDropZone() {
   const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
@@ -17,7 +18,9 @@ export default function FileDropZone() {
     <div {...getRootProps()}>
       <div>
         <input {...getInputProps()} />
-        <button className={styles.dropzoneContainer}>Drop / select file</button>
+        <button className={styles.dropzoneContainer}>
+          Drop / select file <UploadFileIcon />
+        </button>
       </div>
     </div>
   );

@@ -196,6 +196,10 @@
   border: 2px dashed white;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .generateFileContainer {
@@ -206,6 +210,10 @@
   border: 2px solid white;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .dropzoneContainer:hover {
