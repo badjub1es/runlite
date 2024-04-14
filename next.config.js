@@ -9,12 +9,12 @@ const babelrc = require("./.babelrc.js");
 const plugins = babelrc.plugins;
 const [_name, options] =
   (plugins || []).find(
-    (plugin) =>
-      typeof plugin === "object" && plugin[0] === "@stylexjs/babel-plugin"
+    (plugin) => typeof plugin === 'object' && plugin[0] === "@stylexjs/babel-plugin"
   ) || [];
-const rootDir = options.unstable_moduleResolution.rootDir ?? __dirname;
-const aliases = options.aliases ?? undefined;
-const useCSSLayers = options.useCSSLayers ?? undefined;
+
+const rootDir = typeof options === 'object' ? options.unstable_moduleResolution?.rootDir ?? __dirname : __dirname;
+const aliases = typeof options === 'object' ? options.aliases ?? undefined : undefined;
+const useCSSLayers = typeof options === 'object' ? options.useCSSLayers ?? undefined : undefined;
 
 module.exports = stylexPlugin({ rootDir, aliases, useCSSLayers })({
   transpilePackages: ["@stylexjs/open-props"],
