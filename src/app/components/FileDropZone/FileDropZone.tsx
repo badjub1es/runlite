@@ -43,12 +43,10 @@ export default function FileDropZone() {
 
   return (
     <div {...getRootProps()}>
-      <div>
-        <input {...getInputProps()} />
-        <button {...stylex.props(styles.fileDropZone)}>
-          Drop / select file <UploadFileIcon />
-        </button>
-      </div>
+      <input {...getInputProps()} />
+      <button {...stylex.props(styles.fileDropZone)}>
+        Drop / select file <UploadFileIcon />
+      </button>
     </div>
   );
 }
