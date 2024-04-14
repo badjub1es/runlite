@@ -1,8 +1,24 @@
 import React from "react";
-import styles from "~/app/index.module.css";
 import { useDropzone } from "react-dropzone";
 import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import * as stylex from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  fileDropZone: {
+    padding: "10px",
+    width: "fit-content",
+    borderRadius: "10px",
+    backgroundColor: "transparent",
+    border: "2px dashed white",
+    color: "white",
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "5px",
+  },
+});
 
 export default function FileDropZone() {
   const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
@@ -18,7 +34,7 @@ export default function FileDropZone() {
     <div {...getRootProps()}>
       <div>
         <input {...getInputProps()} />
-        <button className={styles.dropzoneContainer}>
+        <button {...stylex.props(styles.fileDropZone)}>
           Drop / select file <UploadFileIcon />
         </button>
       </div>
