@@ -1,25 +1,46 @@
+"use client";
 import React from "react";
 import styles from "~/app/index.module.css";
 import Stack from "../components/Stack/Stack";
-import Image from "next/image";
-import Card from "../components/Card/Card";
+import GenerateFileForm from "./GenerateFileForm/GenerateFileForm";
+import { Fade } from "@mui/material";
 
 export default function Home() {
+  const [titleVisible, setTitleVisible] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTitleVisible(false);
+
+      return () => {
+        clearInterval(timeout);
+      };
+    }, 3000);
+  }, []);
+
   return (
     <section className="background">
-      <Stack spacing={10} justifyContent="center" alignItems="center">
-        <h2 className={styles.subTitle}>
-          Generate a new file to track your{" "}
-          <span className={styles.yellowSpan}>running</span>
-        </h2>
-        <img
-          height={75}
-          width={75}
-          src="./images/naruto.gif"
-          alt="naruto GIF"
-        />
+      <Stack direction="column" spacing={50}>
+        {titleVisible && (
+          <Fade in={titleVisible}>
+            <div>
+              <Stack spacing={10} justifyContent="center" alignItems="center">
+                <h1 className={styles.subTitle}>
+                  Generate a new file to track your{" "}
+                  <span className={styles.yellowSpan}>running</span>
+                </h1>
+                <img
+                  height={75}
+                  width={75}
+                  src="./images/naruto.gif"
+                  alt="naruto GIF"
+                />
+              </Stack>
+            </div>
+          </Fade>
+        )}
+        <GenerateFileForm fadeIn={!titleVisible} />
       </Stack>
-      <Card>Hello</Card>
     </section>
   );
 }
