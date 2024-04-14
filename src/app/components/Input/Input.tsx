@@ -17,13 +17,23 @@ interface InputProps {
   disabled?: boolean;
   step?: number;
   autoFocus?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  border?: string;
+  width?: string;
 }
 
 const styles = stylex.create({
   input: {
     padding: ".5rem",
     borderRadius: "4px",
-    backgroundColor: "white",
+    "::placeholder": {
+      color: "white",
+      fontStyle: "italic",
+    },
+    ":focus": {
+      outline: "1px solid #fef08a",
+    },
   },
 });
 
@@ -40,12 +50,20 @@ export default function Input({
   disabled = false,
   step = 1,
   autoFocus = false,
+  backgroundColor = "transparent",
+  color = "white",
+  border = "1px solid white",
+  width = "100%",
 }: InputProps) {
   return (
     <input
       {...stylex.props(styles.input)}
       style={{
         [disabled ? "cursor" : ""]: "not-allowed",
+        backgroundColor,
+        color,
+        border,
+        width,
       }}
       id={id}
       name={name}

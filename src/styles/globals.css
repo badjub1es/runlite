@@ -25,6 +25,15 @@ a {
   background-image: linear-gradient(to bottom, #1d4ed8, #15162c);
 }
 
+hr {
+  border: none; /* Remove the border */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  width: 100%; /* Optionally, set the width to 100% to span the container's width */
+  height: 1px; /* Optionally, set the height to define the thickness of the line */
+  background-color: #000; /* Optionally, set a custom background color */
+}
+
 * {
   box-sizing: border-box;
 }
