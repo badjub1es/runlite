@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Card from "~/app/components/Card/Card";
 import Input from "~/app/components/Input/Input";

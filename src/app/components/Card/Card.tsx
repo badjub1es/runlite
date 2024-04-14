@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Fade } from "@mui/material";
 import * as stylex from "@stylexjs/stylex";

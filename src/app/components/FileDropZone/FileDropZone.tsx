@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
