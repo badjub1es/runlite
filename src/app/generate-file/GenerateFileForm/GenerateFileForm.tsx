@@ -37,14 +37,16 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
         <div>
           <Stack direction="column" spacing={20}>
             <Input
+              required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder="First name"
+              placeholder="First name *"
             />
             <Input
+              required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Last name"
+              placeholder="Last name *"
             />
           </Stack>
         </div>
