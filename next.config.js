@@ -1,6 +1,3 @@
-const path = require('path');
-const stylexPlugin = require('@stylexjs/nextjs-plugin');
-
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
@@ -8,10 +5,6 @@ const stylexPlugin = require('@stylexjs/nextjs-plugin');
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
+const config = {};
 
-module.exports = stylexPlugin({
-  aliases: {
-    '@/*': [path.join(__dirname, '*')],
-  },
-  rootDir: __dirname,
-})({});
+export default config;
