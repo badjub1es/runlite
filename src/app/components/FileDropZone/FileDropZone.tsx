@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "~/app/index.module.css";
 import { useDropzone } from "react-dropzone";
-import { DropzoneFile } from "~/types/Dropzone/DropzoneFile";
+import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 export default function FileDropZone() {

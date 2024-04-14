@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { AlignItemsValues } from "~/types/AlignItems/AlignItemsValues";
-import { JustifyContentValues } from "~/types/JustifyContent/JustifyContentValues";
+import React, { type PropsWithChildren } from "react";
+import { type AlignItemsValues } from "~/types/AlignItems/AlignItemsValues";
+import { type JustifyContentValues } from "~/types/JustifyContent/JustifyContentValues";
 
 interface StackProps extends PropsWithChildren {
   spacing?: number;
