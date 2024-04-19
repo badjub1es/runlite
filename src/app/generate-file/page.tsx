@@ -4,6 +4,13 @@ import styles from "~/app/index.module.css";
 import Stack from "../components/Stack/Stack";
 import GenerateFileForm from "./GenerateFileForm/GenerateFileForm";
 import { Fade } from "@mui/material";
+import * as stylex from "@stylexjs/stylex";
+
+const stylexStyles = stylex.create({
+  container: {
+    maxWidth: "80vw",
+  },
+});
 
 export default function Home() {
   const [titleVisible, setTitleVisible] = React.useState(true);
@@ -23,7 +30,7 @@ export default function Home() {
       <Stack direction="column" spacing={50}>
         {titleVisible && (
           <Fade in={titleVisible}>
-            <div>
+            <div {...stylex.props(stylexStyles.container)}>
               <Stack spacing={10} justifyContent="center" alignItems="center">
                 <h1 className={styles.subTitle}>
                   Generate a new file to track your{" "}
