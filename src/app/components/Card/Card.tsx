@@ -14,6 +14,7 @@ const styles = stylex.create({
     padding: "1rem",
     borderRadius: "10px",
     boxShadow: "0 3px 5px rgba(0, 0, 0, 0.5)",
+    maxWidth: "80vw",
   },
 });
 
