@@ -2,6 +2,7 @@ import React, { ChangeEvent } from "react";
 import { type InputType } from "~/types/Input/InputType";
 import { type InputValue } from "~/types/Input/InputValue";
 import * as stylex from "@stylexjs/stylex";
+import Stack from "../Stack/Stack";
 
 interface InputProps {
   id?: string;
@@ -20,6 +21,9 @@ interface InputProps {
   color?: string;
   border?: string;
   width?: string;
+  label?: string;
+  error?: boolean;
+  helperText?: string;
 }
 
 const styles = stylex.create({
@@ -32,6 +36,16 @@ const styles = stylex.create({
     },
     ":focus": {
       outline: "1px solid #fef08a",
+    },
+  },
+  helperText: {
+    color: "white",
+    fontSize: ".8rem",
+    marginLeft: ".75rem",
+  },
+  placeholderError: {
+    "::placeholder": {
+      color: "red",
     },
   },
 });
@@ -53,7 +67,56 @@ export default function Input({
   color = "white",
   border = "1px solid white",
   width = "100%",
+  label,
+  error = false,
+  helperText,
 }: InputProps) {
+  if (label) {
+    return (
+      <Stack spacing={10} direction="column">
+        <label
+          htmlFor={id}
+          style={{
+            color,
+          }}
+        >
+          {label}
+        </label>
+        <input
+          {...stylex.props(styles.input, error && styles.placeholderError)}
+          style={{
+            [disabled ? "cursor" : ""]: "not-allowed",
+            backgroundColor,
+            color,
+            border: error ? "1px solid red" : border,
+            width,
+          }}
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+          readOnly={readOnly}
+          multiple={multiple}
+          step={step}
+          autoFocus={autoFocus}
+          disabled={disabled}
+        />
+        {helperText && (
+          <span
+            {...stylex.props(styles.helperText)}
+            style={{
+              [error ? "color" : ""]: "red",
+            }}
+          >
+            {helperText}
+          </span>
+        )}
+      </Stack>
+    );
+  }
   return (
     <input
       {...stylex.props(styles.input)}

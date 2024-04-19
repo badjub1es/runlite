@@ -1,11 +1,19 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Card from "~/app/components/Card/Card";
 import Input from "~/app/components/Input/Input";
 import Stack from "~/app/components/Stack/Stack";
 import Divider from "~/app/components/Card/Divider";
 import CardTitle from "~/app/components/Card/CardTitle";
-import { Fade } from "@mui/material";
+import {
+  Button,
+  Fade,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
+import { MetricType } from "~/types/MetricType/MetricType";
 import * as stylex from "@stylexjs/stylex";
 
 interface GenerateFileFormProps {
@@ -21,6 +29,46 @@ const styles = stylex.create({
 export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
+  const [metricType, setMetricType] = React.useState(MetricType.mi);
+
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [inputOneChanged, setInputOneChanged] = React.useState(false);
+  const [inputTwoChanged, setInputTwoChanged] = React.useState(false);
+  const [inputOneError, setInputOneError] = React.useState(false);
+  const [inputTwoError, setInputTwoError] = React.useState(false);
+
+  const handleMetricTypeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setMetricType(event.target.value as MetricType);
+  };
+
+  const handleFirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputOneChanged(true);
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputTwoChanged(true);
+    setLastName(event.target.value);
+  };
+
+  const generateAndDownloadJson = () => {
+    const jsonStr = JSON.stringify({ firstName, lastName, metricType });
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${firstName}_${lastName}_runlite_data.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+
+  React.useEffect(() => {
+    setButtonDisabled(!firstName || !lastName);
+    setInputOneError(!firstName && inputOneChanged);
+    setInputTwoError(!lastName && inputTwoChanged);
+  }, [firstName, lastName]);
+
   return (
     <Card
       fade
@@ -38,16 +86,80 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
           <Stack direction="column" spacing={20}>
             <Input
               required
+              label="First name"
+              error={inputOneError}
+              helperText={inputOneError ? "First name is required" : ""}
+              id="first-name-input"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={handleFirstNameChange}
               placeholder="First name *"
             />
             <Input
               required
+              label="Last name"
+              error={inputTwoError}
+              helperText={inputTwoError ? "Last name is required" : ""}
+              id="last-name-input"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={handleLastNameChange}
               placeholder="Last name *"
             />
+            <FormControl>
+              <label htmlFor="radio-button-group" style={{ color: "white" }}>
+                Metric preference
+              </label>
+              <RadioGroup
+                id="radio-button-group"
+                value={metricType}
+                onChange={handleMetricTypeChange}
+                aria-labelledby="metric-radio-buttons-group-label"
+                defaultValue="mi"
+                name="metric-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="mi"
+                  sx={{ color: "white" }}
+                  control={
+                    <Radio
+                      size="small"
+                      sx={{
+                        color: "white",
+                        "&.Mui-checked": { color: ThemeColors.YELLOW },
+                      }}
+                    />
+                  }
+                  label="mi (miles)"
+                />
+                <FormControlLabel
+                  value="km"
+                  sx={{ color: "white" }}
+                  control={
+                    <Radio
+                      size="small"
+                      sx={{
+                        color: "white",
+                        "&.Mui-checked": { color: ThemeColors.YELLOW },
+                      }}
+                    />
+                  }
+                  label="km (kilometers)"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Button
+              disabled={buttonDisabled}
+              variant="contained"
+              onClick={generateAndDownloadJson}
+              sx={{
+                backgroundColor: ThemeColors.GLASS,
+                "&:hover": {
+                  backgroundColor: ThemeColors.YELLOW,
+                  color: "black",
+                },
+              }}
+            >
+              Generate file
+            </Button>
           </Stack>
         </div>
       </Fade>
