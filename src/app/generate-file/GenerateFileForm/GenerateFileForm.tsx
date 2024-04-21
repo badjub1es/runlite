@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { type ChangeEvent } from "react";
 import Card from "~/components/Card/Card";
 import Input from "~/components/Input/Input";
 import Stack from "~/components/Stack/Stack";
@@ -14,8 +14,8 @@ import {
 } from "@mui/material";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { MetricType } from "~/types/MetricType/MetricType";
-import * as stylex from "@stylexjs/stylex";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
+import * as stylex from "@stylexjs/stylex";
 
 interface GenerateFileFormProps {
   fadeIn: boolean;
@@ -32,43 +32,34 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
     (state) => state
   );
 
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
+  const [name, setName] = React.useState("");
   const [metricType, setMetricType] = React.useState(MetricType.mi);
 
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  const [inputOneChanged, setInputOneChanged] = React.useState(false);
-  const [inputTwoChanged, setInputTwoChanged] = React.useState(false);
-  const [inputOneError, setInputOneError] = React.useState(false);
-  const [inputTwoError, setInputTwoError] = React.useState(false);
+  const [inputNameChanged, setInputNameChanged] = React.useState(false);
+  const [inputNameError, setInputNameError] = React.useState(false);
 
   const handleMetricTypeChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMetricType(event.target.value as MetricType);
   };
 
-  const handleFirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputOneChanged(true);
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputTwoChanged(true);
-    setLastName(event.target.value);
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputNameChanged(true);
+    setName(event.target.value);
   };
 
   const generateAndDownloadJson = () => {
-    const jsonStr = JSON.stringify({ firstName, lastName, metricType });
+    const jsonStr = JSON.stringify({ name, metricType });
     const blob = new Blob([jsonStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     setFileDownload(url);
-    setFileName(`${firstName}_${lastName}_runlite_data.json`);
+    setFileName(`${name}_runlite_data.json`);
   };
 
   React.useEffect(() => {
-    setButtonDisabled(!firstName || !lastName);
-    setInputOneError(!firstName && inputOneChanged);
-    setInputTwoError(!lastName && inputTwoChanged);
-  }, [firstName, lastName]);
+    setButtonDisabled(!name);
+    setInputNameError(!name && inputNameChanged);
+  }, [name, inputNameChanged]);
 
   return (
     <Card
@@ -87,23 +78,13 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
           <Stack direction="column" spacing={20}>
             <Input
               required
-              label="First name"
-              error={inputOneError}
-              helperText={inputOneError ? "First name is required" : ""}
-              id="first-name-input"
-              value={firstName}
-              onChange={handleFirstNameChange}
-              placeholder="First name *"
-            />
-            <Input
-              required
-              label="Last name"
-              error={inputTwoError}
-              helperText={inputTwoError ? "Last name is required" : ""}
-              id="last-name-input"
-              value={lastName}
-              onChange={handleLastNameChange}
-              placeholder="Last name *"
+              label="What should we call you?"
+              error={inputNameError}
+              helperText={inputNameError ? "Name or username is required" : ""}
+              id="name-username-input"
+              value={name}
+              onChange={handleNameChange}
+              placeholder="Name or username *"
             />
             <FormControl>
               <label htmlFor="radio-button-group" style={{ color: "white" }}>
