@@ -7,7 +7,7 @@ import {
   type RunTrackingStore,
   createRunTrackingStore,
   initRunTrackingStore,
-} from "~/stores/runTrackingStore";
+} from "~/stores/RunTrackingStore";
 
 export const RunTrackingStoreContext =
   createContext<StoreApi<RunTrackingStore> | null>(null);

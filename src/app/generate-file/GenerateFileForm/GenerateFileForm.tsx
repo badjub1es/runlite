@@ -15,6 +15,7 @@ import {
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { MetricType } from "~/types/MetricType/MetricType";
 import * as stylex from "@stylexjs/stylex";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 interface GenerateFileFormProps {
   fadeIn: boolean;
@@ -27,6 +28,10 @@ const styles = stylex.create({
 });
 
 export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
+  const { setFileDownload, setFileName } = useRunTrackingStore(
+    (state) => state
+  );
+
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [metricType, setMetricType] = React.useState(MetricType.mi);
@@ -55,12 +60,8 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
     const jsonStr = JSON.stringify({ firstName, lastName, metricType });
     const blob = new Blob([jsonStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${firstName}_${lastName}_runlite_data.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    setFileDownload(url);
+    setFileName(`${firstName}_${lastName}_runlite_data.json`);
   };
 
   React.useEffect(() => {
