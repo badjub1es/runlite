@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Stack from "./components/Stack/Stack";
+import Stack from "../components/Stack/Stack";
 import styles from "./index.module.css";
-import FileDropZone from "./components/FileDropZone/FileDropZone";
-import GenerateFile from "./components/GenerateFile/GenerateFile";
+import FileDropZone from "../components/FileDropZone/FileDropZone";
+import GenerateFile from "../components/GenerateFile/GenerateFile";
 
 export default function Home() {
   return (
