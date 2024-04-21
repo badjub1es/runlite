@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "~/app/index.module.css";
-import Stack from "../components/Stack/Stack";
+import Stack from "../../components/Stack/Stack";
 import GenerateFileForm from "./GenerateFileForm/GenerateFileForm";
 import { Fade } from "@mui/material";
 import * as stylex from "@stylexjs/stylex";

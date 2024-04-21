@@ -1,3 +1,4 @@
+import { RunTrackingStoreProvider } from "~/providers/RunTrackingStoreProvider";
 import "~/styles/globals.css";
 
 export const metadata = {
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <RunTrackingStoreProvider>{children}</RunTrackingStoreProvider>
+      </body>
     </html>
   );
 }

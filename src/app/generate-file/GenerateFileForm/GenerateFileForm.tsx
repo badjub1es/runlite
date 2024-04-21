@@ -1,9 +1,9 @@
 import React, { ChangeEvent } from "react";
-import Card from "~/app/components/Card/Card";
-import Input from "~/app/components/Input/Input";
-import Stack from "~/app/components/Stack/Stack";
-import Divider from "~/app/components/Card/Divider";
-import CardTitle from "~/app/components/Card/CardTitle";
+import Card from "~/components/Card/Card";
+import Input from "~/components/Input/Input";
+import Stack from "~/components/Stack/Stack";
+import Divider from "~/components/Card/Divider";
+import CardTitle from "~/components/Card/CardTitle";
 import {
   Button,
   Fade,
