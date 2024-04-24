@@ -12,8 +12,9 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { MetricType } from "~/types/MetricType/MetricType";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
+import { initialUserFile } from "~/types/UserFile/UserFile";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 
@@ -49,7 +50,13 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
   };
 
   const generateAndDownloadJson = () => {
-    const jsonStr = JSON.stringify({ name, metricType });
+    // Set initial user information to object
+    const initialFile = { ...initialUserFile };
+    initialFile.name = name;
+    initialFile.metricType = metricType;
+    const jsonStr = JSON.stringify(initialFile);
+
+    // Create file download
     const blob = new Blob([jsonStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     setFileDownload(url);
