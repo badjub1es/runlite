@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import * as stylex from "@stylexjs/stylex";
+import { validateUserFile } from "~/utils/validateUserFile";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#fef08a", color: "#fef08a" },
@@ -33,7 +34,9 @@ const styles = stylex.create({
 
 export default function FileDropZone() {
   const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
-    console.log(acceptedFiles);
+    const [acceptedFile] = acceptedFiles;
+    // TODO: When validations are complete, do something with this data
+    validateUserFile(acceptedFile).then((data) => console.log("outside", data));
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
