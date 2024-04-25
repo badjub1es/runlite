@@ -2,12 +2,15 @@ import React from "react";
 import GradientProgress from "~/components/GradientProgress/GradientProgress";
 import { Fade, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 export default function DashboardLoading() {
   const router = useRouter();
+  const { setValidFileAvailable } = useRunTrackingStore((state) => state);
 
   React.useEffect(() => {
     const timeoutId = setTimeout(() => {
+      setValidFileAvailable(true);
       router.push("/dashboard");
     }, 3000);
 
