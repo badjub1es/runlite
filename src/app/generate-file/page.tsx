@@ -3,7 +3,9 @@ import React from "react";
 import styles from "~/app/index.module.css";
 import Stack from "../../components/Stack/Stack";
 import GenerateFileForm from "./GenerateFileForm/GenerateFileForm";
+import DashboardLoading from "./DashboardLoading/DashboardLoading";
 import { Fade } from "@mui/material";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 
 const stylexStyles = stylex.create({
@@ -13,6 +15,7 @@ const stylexStyles = stylex.create({
 });
 
 export default function Home() {
+  const { fileDownload } = useRunTrackingStore((state) => state);
   const [titleVisible, setTitleVisible] = React.useState(true);
 
   React.useEffect(() => {
@@ -24,6 +27,10 @@ export default function Home() {
       };
     }, 3000);
   }, []);
+
+  if (fileDownload) {
+    return <DashboardLoading />;
+  }
 
   return (
     <section className="background">
