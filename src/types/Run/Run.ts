@@ -1,6 +1,6 @@
-import { Workout } from "../Workout/Workout";
+import { type Workout } from "../Workout/Workout";
 
 export interface Run extends Workout {
-    shoeId: string;
-    distance: number;
+  shoeId: string;
+  distance: number;
 }

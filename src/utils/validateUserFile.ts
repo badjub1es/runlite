@@ -1,5 +1,5 @@
-import { UserFile } from "~/types/UserFile/UserFile";
-import { DropzoneFile } from "~/types/Dropzone/DropzoneFile";
+import { type UserFile } from "~/types/UserFile/UserFile";
+import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import { ErrorMessages } from "~/types/Error/ErrorMessages";
 import { parseJSONFile } from "./parseJSONFile";
 

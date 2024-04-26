@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { type ChangeEvent } from "react";
 import { type InputType } from "~/types/Input/InputType";
 import { type InputValue } from "~/types/Input/InputValue";
 import * as stylex from "@stylexjs/stylex";

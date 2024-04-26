@@ -11,7 +11,7 @@ export default function Home() {
     if (validFileAvailable) {
       router.push("/");
     }
-  }, [validFileAvailable]);
+  }, [router, validFileAvailable]);
 
   return (
     <section className="background">
