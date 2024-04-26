@@ -7,9 +7,11 @@ export default function Home() {
   const router = useRouter();
   const { validFileAvailable } = useRunTrackingStore((state) => state);
 
-  if (!validFileAvailable) {
-    router.push("/");
-  }
+  React.useEffect(() => {
+    if (validFileAvailable) {
+      router.push("/");
+    }
+  }, [router, validFileAvailable]);
 
   return (
     <section className="background">

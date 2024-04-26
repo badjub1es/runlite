@@ -17,7 +17,7 @@ export default function DashboardLoading() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [router, setValidFileAvailable]);
 
   return (
     <section className="background">
