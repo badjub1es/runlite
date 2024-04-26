@@ -36,7 +36,7 @@ export default function FileDropZone() {
   const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
     const [acceptedFile] = acceptedFiles;
     // TODO: When validations are complete, do something with this data
-    validateUserFile(acceptedFile).then((data) => console.log("outside", data));
+    // validateUserFile(acceptedFile).then((data) => console.log("outside", data));
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
