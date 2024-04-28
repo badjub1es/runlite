@@ -61,7 +61,7 @@ export const validateUserFile = async (
     // TODO: Add validations for -> Shoe
     // TODO: Add validations for -> Runs
     // TODO: Return valid user file
-    return { isValid: true, userFile: null };
+    return { isValid: true, userFile: fileJSON as UserFile };
   } catch (error) {
     return {
       isValid: false,
