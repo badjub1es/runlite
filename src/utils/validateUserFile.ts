@@ -2,6 +2,7 @@ import { type UserFile } from "~/types/UserFile/UserFile";
 import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import { ErrorMessages } from "~/types/Error/ErrorMessages";
 import { parseJSONFile } from "./parseJSONFile";
+import { MetricType } from "~/types/MetricType/MetricType";
 
 const hasOwnPropertyCb = (obj: Partial<UserFile>) => {
   return (key: string) => obj.hasOwnProperty(key);
@@ -44,8 +45,18 @@ export const validateUserFile = async (
     if (!check("name")) {
       throw new Error();
     }
+    // Metric type validation
+    if (check("metricType")) {
+        if (fileJSON.metricType !== MetricType.mi && fileJSON.metricType !== MetricType.km) {
+            throw new Error();
+        }
+    }
+    if (!check("metricType")) {
+        throw new Error();
+    }
 
-    // TODO: Continue validations
+    // TODO: Add validations for -> Shoe
+    // TODO: Add validations for -> Runs
     // TODO: Return valid user file
     return { isValid: true, userFile: null };
   } catch (error) {
