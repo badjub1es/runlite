@@ -1,9 +1,11 @@
 import React from "react";
-import { useDropzone } from "react-dropzone";
-import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
+import { useDropzone } from "react-dropzone";
+import { validateUserFile } from "~/utils/validateUserFile";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
-// import { validateUserFile } from "~/utils/validateUserFile";
+import { useNotification } from "~/providers/NotificationProvider";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#fef08a", color: "#fef08a" },
@@ -33,12 +35,37 @@ const styles = stylex.create({
 });
 
 export default function FileDropZone() {
-  const onDrop = React.useCallback((acceptedFiles: DropzoneFile[]) => {
-    acceptedFiles;
-    // const [acceptedFile] = acceptedFiles;
-    // TODO: When validations are complete, do something with this data
-    // validateUserFile(acceptedFile).then((data) => console.log("outside", data));
-  }, []);
+  const { notifySuccess, notifyFailure } = useNotification();
+  const { setValidFileAvailable, setName, setMetricType } = useRunTrackingStore(
+    (state) => state
+  );
+
+  const onDrop = React.useCallback(
+    (acceptedFiles: DropzoneFile[]) => {
+      const [acceptedFile] = acceptedFiles;
+      // TODO: When validations are complete, do something with this data
+      validateUserFile(acceptedFile)
+        .then((data) => {
+          if (data.userFile && data.isValid) {
+            // If UserFile is valid, set to in memory state
+            setValidFileAvailable(data.isValid);
+            setName(data.userFile.name);
+            setMetricType(data.userFile.metricType);
+            notifySuccess("File successfully validated");
+          }
+        })
+        .catch(() => {
+          notifyFailure("Error validating uploaded file");
+        });
+    },
+    [
+      notifySuccess,
+      notifyFailure,
+      setMetricType,
+      setValidFileAvailable,
+      setName,
+    ]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
