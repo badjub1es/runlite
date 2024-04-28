@@ -47,12 +47,15 @@ export const validateUserFile = async (
     }
     // Metric type validation
     if (check("metricType")) {
-        if (fileJSON.metricType !== MetricType.mi && fileJSON.metricType !== MetricType.km) {
-            throw new Error();
-        }
+      if (
+        fileJSON.metricType !== MetricType.mi &&
+        fileJSON.metricType !== MetricType.km
+      ) {
+        throw new Error();
+      }
     }
     if (!check("metricType")) {
-        throw new Error();
+      throw new Error();
     }
 
     // TODO: Add validations for -> Shoe
