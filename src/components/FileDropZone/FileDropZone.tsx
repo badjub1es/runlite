@@ -43,7 +43,6 @@ export default function FileDropZone() {
   const onDrop = React.useCallback(
     (acceptedFiles: DropzoneFile[]) => {
       const [acceptedFile] = acceptedFiles;
-      // TODO: When validations are complete, do something with this data
       validateUserFile(acceptedFile)
         .then((data) => {
           if (data.userFile && data.isValid) {
@@ -52,6 +51,7 @@ export default function FileDropZone() {
             setName(data.userFile.name);
             setMetricType(data.userFile.metricType);
             notifySuccess("File successfully validated");
+            // TODO: When Shoe and Run data is available, set in memory state
           }
         })
         .catch(() => {
