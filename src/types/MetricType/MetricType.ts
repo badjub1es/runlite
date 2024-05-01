@@ -1,4 +1,4 @@
 export enum MetricType {
-    mi = 'mi',
-    km = 'km'
+  MI = "mi",
+  KM = "km",
 }

@@ -34,7 +34,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
   );
 
   const [name, setName] = React.useState("");
-  const [metricType, setMetricType] = React.useState(MetricType.mi);
+  const [metricType, setMetricType] = React.useState(MetricType.MI);
 
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [inputNameChanged, setInputNameChanged] = React.useState(false);
@@ -87,7 +87,12 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               required
               label="What should we call you?"
               error={inputNameError}
-              helperText={inputNameError ? "Name or username is required" : ""}
+              maxLength={50}
+              helperText={
+                inputNameError
+                  ? "Name or username is required"
+                  : "Max characters: 50"
+              }
               id="name-username-input"
               value={name}
               onChange={handleNameChange}

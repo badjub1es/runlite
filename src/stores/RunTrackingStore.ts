@@ -24,7 +24,7 @@ export const initRunTrackingStore = (): RunTrackingState => ({
   fileName: "",
   validFileAvailable: false,
   name: "",
-  metricType: MetricType.mi,
+  metricType: MetricType.MI,
 });
 
 export const defaultInitState: RunTrackingState = {
@@ -32,7 +32,7 @@ export const defaultInitState: RunTrackingState = {
   fileName: "",
   validFileAvailable: false,
   name: "",
-  metricType: MetricType.mi,
+  metricType: MetricType.MI,
 };
 
 export const createRunTrackingStore = (

@@ -36,26 +36,26 @@ export const validateUserFile = async (
     // Name validation
     if (check("name")) {
       if (typeof fileJSON.name !== "string") {
-        throw new Error("Name is not a string");
+        throw new Error(ErrorMessages.NAME_TYPE);
       }
       if (fileJSON.name.length > 50) {
-        throw new Error("Name is longer than 50 characters");
+        throw new Error(ErrorMessages.NAME_LENGTH);
       }
     }
     if (!check("name")) {
-      throw new Error("Name is missing");
+      throw new Error(ErrorMessages.NAME_MISSING);
     }
     // Metric type validation
     if (check("metricType")) {
       if (
-        fileJSON.metricType !== MetricType.mi &&
-        fileJSON.metricType !== MetricType.km
+        fileJSON.metricType !== MetricType.MI &&
+        fileJSON.metricType !== MetricType.KM
       ) {
-        throw new Error("Metric type is not mi or km");
+        throw new Error(ErrorMessages.METRIC_TYPE_TYPE);
       }
     }
     if (!check("metricType")) {
-      throw new Error("Metric type is missing");
+      throw new Error(ErrorMessages.METRIC_TYPE_MISSING);
     }
 
     // TODO: Add validations for -> Shoe
