@@ -36,14 +36,14 @@ export const validateUserFile = async (
     // Name validation
     if (check("name")) {
       if (typeof fileJSON.name !== "string") {
-        throw new Error();
+        throw new Error("Name is not a string");
       }
       if (fileJSON.name.length > 50) {
-        throw new Error();
+        throw new Error("Name is longer than 50 characters");
       }
     }
     if (!check("name")) {
-      throw new Error();
+      throw new Error("Name is missing");
     }
     // Metric type validation
     if (check("metricType")) {
@@ -51,11 +51,11 @@ export const validateUserFile = async (
         fileJSON.metricType !== MetricType.mi &&
         fileJSON.metricType !== MetricType.km
       ) {
-        throw new Error();
+        throw new Error("Metric type is not mi or km");
       }
     }
     if (!check("metricType")) {
-      throw new Error();
+      throw new Error("Metric type is missing");
     }
 
     // TODO: Add validations for -> Shoe
@@ -63,11 +63,7 @@ export const validateUserFile = async (
     // TODO: Return valid user file
     return { isValid: true, userFile: fileJSON as UserFile };
   } catch (error) {
-    return {
-      isValid: false,
-      error: ErrorMessages.FILE_VALIDATION,
-      userFile: null,
-    };
+    throw error;
   }
 };
 
