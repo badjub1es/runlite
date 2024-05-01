@@ -24,6 +24,7 @@ interface InputProps {
   label?: string;
   error?: boolean;
   helperText?: string;
+  maxLength?: number;
 }
 
 const styles = stylex.create({
@@ -70,6 +71,7 @@ export default function Input({
   label,
   error = false,
   helperText,
+  maxLength,
 }: InputProps) {
   if (label) {
     return (
@@ -103,6 +105,7 @@ export default function Input({
           step={step}
           autoFocus={autoFocus}
           disabled={disabled}
+          maxLength={maxLength}
         />
         {helperText && (
           <span

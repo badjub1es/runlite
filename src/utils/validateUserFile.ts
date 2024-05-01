@@ -36,26 +36,26 @@ export const validateUserFile = async (
     // Name validation
     if (check("name")) {
       if (typeof fileJSON.name !== "string") {
-        throw new Error();
+        throw new Error(ErrorMessages.NAME_TYPE);
       }
       if (fileJSON.name.length > 50) {
-        throw new Error();
+        throw new Error(ErrorMessages.NAME_LENGTH);
       }
     }
     if (!check("name")) {
-      throw new Error();
+      throw new Error(ErrorMessages.NAME_MISSING);
     }
     // Metric type validation
     if (check("metricType")) {
       if (
-        fileJSON.metricType !== MetricType.mi &&
-        fileJSON.metricType !== MetricType.km
+        fileJSON.metricType !== MetricType.MI &&
+        fileJSON.metricType !== MetricType.KM
       ) {
-        throw new Error();
+        throw new Error(ErrorMessages.METRIC_TYPE_TYPE);
       }
     }
     if (!check("metricType")) {
-      throw new Error();
+      throw new Error(ErrorMessages.METRIC_TYPE_MISSING);
     }
 
     // TODO: Add validations for -> Shoe
@@ -63,11 +63,7 @@ export const validateUserFile = async (
     // TODO: Return valid user file
     return { isValid: true, userFile: fileJSON as UserFile };
   } catch (error) {
-    return {
-      isValid: false,
-      error: ErrorMessages.FILE_VALIDATION,
-      userFile: null,
-    };
+    throw error;
   }
 };
 

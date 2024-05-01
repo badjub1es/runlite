@@ -11,7 +11,7 @@ export interface UserFile {
 
 export const initialUserFile: UserFile = {
   name: "",
-  metricType: MetricType.mi,
+  metricType: MetricType.MI,
   shoes: [],
   runs: [],
 };

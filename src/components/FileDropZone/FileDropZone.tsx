@@ -54,8 +54,8 @@ export default function FileDropZone() {
             // TODO: When Shoe and Run data is available, set in memory state
           }
         })
-        .catch(() => {
-          notifyFailure("Error validating uploaded file");
+        .catch((error: Error) => {
+          notifyFailure(`Error validating uploaded file: ${error.message}`);
         });
     },
     [
