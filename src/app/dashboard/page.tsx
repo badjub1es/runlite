@@ -8,7 +8,7 @@ export default function Home() {
   const { validFileAvailable } = useRunTrackingStore((state) => state);
 
   React.useEffect(() => {
-    if (validFileAvailable) {
+    if (!validFileAvailable) {
       router.push("/");
     }
   }, [router, validFileAvailable]);
