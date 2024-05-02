@@ -6,6 +6,8 @@ import { validateUserFile } from "~/utils/validateUserFile";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import { useNotification } from "~/providers/NotificationProvider";
+import { useRouter } from "next/navigation";
+import { AppRoute } from "~/types/AppRoute/AppRoute";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#fef08a", color: "#fef08a" },
@@ -35,6 +37,7 @@ const styles = stylex.create({
 });
 
 export default function FileDropZone() {
+  const router = useRouter();
   const { notifySuccess, notifyFailure } = useNotification();
   const { setValidFileAvailable, setName, setMetricType } = useRunTrackingStore(
     (state) => state
@@ -51,6 +54,7 @@ export default function FileDropZone() {
             setName(data.userFile.name);
             setMetricType(data.userFile.metricType);
             notifySuccess("File successfully validated");
+            router.push(AppRoute.DASHBOARD);
             // TODO: When Shoe and Run data is available, set in memory state
           }
         })
