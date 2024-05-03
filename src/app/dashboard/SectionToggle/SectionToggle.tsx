@@ -3,7 +3,7 @@ import { DirectionsRun } from "@mui/icons-material";
 import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 
 interface SectionToggleProps {
-  value: string;
+  value: string | null;
   setValue: (value: string | null) => void;
 }
 

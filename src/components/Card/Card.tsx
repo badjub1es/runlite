@@ -11,9 +11,9 @@ interface CardProps extends React.PropsWithChildren {
 
 const styles = stylex.create({
   card: {
-    padding: "1rem",
-    borderRadius: "10px",
-    boxShadow: "0 3px 5px rgba(0, 0, 0, 0.5)",
+    padding: "1.2rem",
+    borderRadius: "30px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     maxWidth: "80vw",
   },
 });

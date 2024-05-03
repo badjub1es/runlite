@@ -10,6 +10,8 @@ import { formatDate } from "~/utils/formatDate";
 import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
+import Card from "~/components/Card/Card";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 const styles = stylex.create({
   baseText: {
@@ -54,20 +56,22 @@ export default function Home() {
   return (
     <Background justifyContent="flex-start">
       <Fade in timeout={2000}>
-        <Stack
-          direction="column"
-          spacing={15}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <p {...stylex.props(styles.baseText, styles.smallText)}>
-            {formatDate(currentDate)}
-          </p>
-          <p {...stylex.props(styles.baseText, styles.largeText)}>
-            {getGreeting(name, currentDate)}
-          </p>
-          <SectionToggle value={sectionValue} setValue={setSectionValue} />
-        </Stack>
+        <Card backgroundColor={ThemeColors.GLASS}>
+          <Stack
+            direction="column"
+            spacing={15}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <p {...stylex.props(styles.baseText, styles.smallText)}>
+              {formatDate(currentDate)}
+            </p>
+            <p {...stylex.props(styles.baseText, styles.largeText)}>
+              {getGreeting(name, currentDate)}
+            </p>
+            <SectionToggle value={sectionValue} setValue={setSectionValue} />
+          </Stack>
+        </Card>
       </Fade>
     </Background>
   );
