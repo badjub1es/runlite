@@ -8,22 +8,22 @@ import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import Background from "~/components/Background/Background";
+import Fade from "~/components/Transitions/Fade";
 
 const styles = stylex.create({
-  whiteText: {
+  baseText: {
+    lineHeight: 1,
+    fontWeight: 700,
+    letterSpacing: "-0.025em",
     color: "white",
-  },
-  smallText: {
-    fontSize: "1.75rem",
-  },
-  largeText: {
-    fontSize: "3rem",
-  },
-  removeMargin: {
+    textAlign: "center",
     margin: 0,
   },
-  centerText: {
-    textAlign: "center",
+  smallText: {
+    fontSize: "1.5rem",
+  },
+  largeText: {
+    fontSize: "2.5rem",
   },
 });
 
@@ -51,33 +51,21 @@ export default function Home() {
 
   return (
     <Background justifyContent="flex-start" padding="4rem 0rem 0rem 0rem">
-      <Stack
-        direction="column"
-        spacing={15}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <p
-          {...stylex.props(
-            styles.whiteText,
-            styles.smallText,
-            styles.removeMargin,
-            styles.centerText
-          )}
+      <Fade in timeout={2000}>
+        <Stack
+          direction="column"
+          spacing={15}
+          justifyContent="center"
+          alignItems="center"
         >
-          {formatDate(currentDate)}
-        </p>
-        <p
-          {...stylex.props(
-            styles.whiteText,
-            styles.largeText,
-            styles.removeMargin,
-            styles.centerText
-          )}
-        >
-          {getGreeting(name, currentDate)}
-        </p>
-      </Stack>
+          <p {...stylex.props(styles.baseText, styles.smallText)}>
+            {formatDate(currentDate)}
+          </p>
+          <p {...stylex.props(styles.baseText, styles.largeText)}>
+            {getGreeting(name, currentDate)}
+          </p>
+        </Stack>
+      </Fade>
     </Background>
   );
 }
