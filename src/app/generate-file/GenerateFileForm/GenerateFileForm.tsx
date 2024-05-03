@@ -29,9 +29,12 @@ const styles = stylex.create({
 });
 
 export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
-  const { setFileDownload, setFileName } = useRunTrackingStore(
-    (state) => state
-  );
+  const {
+    setFileDownload,
+    setFileName,
+    setName: setStoreName,
+    setMetricType: setStoreMetricType,
+  } = useRunTrackingStore((state) => state);
 
   const [name, setName] = React.useState("");
   const [metricType, setMetricType] = React.useState(MetricType.MI);
@@ -55,6 +58,10 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
     initialFile.name = name;
     initialFile.metricType = metricType;
     const jsonStr = JSON.stringify(initialFile);
+
+    // Set initial data in client store
+    setStoreName(name);
+    setStoreMetricType(metricType);
 
     // Create file download
     const blob = new Blob([jsonStr], { type: "application/json" });
