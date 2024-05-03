@@ -2,10 +2,13 @@
 
 import React from "react";
 import Fade from "~/components/Transitions/Fade";
+import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
 import Background from "~/components/Background/Background";
+import SectionToggle from "./SectionToggle/SectionToggle";
 import { useRouter } from "next/navigation";
 import { formatDate } from "~/utils/formatDate";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
@@ -31,7 +34,8 @@ export default function Home() {
   const router = useRouter();
   const { validFileAvailable, name } = useRunTrackingStore((state) => state);
 
-  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
+  const [sectionValue, setSectionValue] = React.useState<string | null>("runs");
 
   // If no valid file is available, redirect to "/"
   React.useEffect(() => {
@@ -52,19 +56,22 @@ export default function Home() {
   return (
     <Background justifyContent="flex-start">
       <Fade in timeout={2000}>
-        <Stack
-          direction="column"
-          spacing={15}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <p {...stylex.props(styles.baseText, styles.smallText)}>
-            {formatDate(currentDate)}
-          </p>
-          <p {...stylex.props(styles.baseText, styles.largeText)}>
-            {getGreeting(name, currentDate)}
-          </p>
-        </Stack>
+        <Card backgroundColor={ThemeColors.GLASS}>
+          <Stack
+            direction="column"
+            spacing={15}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <p {...stylex.props(styles.baseText, styles.smallText)}>
+              {formatDate(currentDate)}
+            </p>
+            <p {...stylex.props(styles.baseText, styles.largeText)}>
+              {getGreeting(name, currentDate)}
+            </p>
+            <SectionToggle value={sectionValue} setValue={setSectionValue} />
+          </Stack>
+        </Card>
       </Fade>
     </Background>
   );
