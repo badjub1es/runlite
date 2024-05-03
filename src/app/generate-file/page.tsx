@@ -7,6 +7,7 @@ import DashboardLoading from "./DashboardLoading/DashboardLoading";
 import { Fade } from "@mui/material";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
+import Background from "~/components/Background/Background";
 
 const stylexStyles = stylex.create({
   container: {
@@ -33,7 +34,7 @@ export default function Home() {
   }
 
   return (
-    <section className="background">
+    <Background>
       <Stack direction="column" spacing={50}>
         {titleVisible && (
           <Fade in={titleVisible}>
@@ -55,6 +56,6 @@ export default function Home() {
         )}
         <GenerateFileForm fadeIn={!titleVisible} />
       </Stack>
-    </section>
+    </Background>
   );
 }

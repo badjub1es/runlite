@@ -4,6 +4,7 @@ import { Fade, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import { AppRoute } from "~/types/AppRoute/AppRoute";
+import Background from "~/components/Background/Background";
 
 export default function DashboardLoading() {
   const router = useRouter();
@@ -21,13 +22,13 @@ export default function DashboardLoading() {
   }, [router, setValidFileAvailable]);
 
   return (
-    <section className="background">
+    <Background>
       <Fade in timeout={2000}>
         <Stack direction="column" justifyContent="center" alignItems="center">
           <h1 style={{ color: "white" }}>Getting your dashboard ready . . .</h1>
           <GradientProgress />
         </Stack>
       </Fade>
-    </section>
+    </Background>
   );
 }
