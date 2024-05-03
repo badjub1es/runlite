@@ -2,16 +2,16 @@
 
 import React from "react";
 import Fade from "~/components/Transitions/Fade";
+import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
 import Background from "~/components/Background/Background";
 import SectionToggle from "./SectionToggle/SectionToggle";
 import { useRouter } from "next/navigation";
 import { formatDate } from "~/utils/formatDate";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
-import Card from "~/components/Card/Card";
-import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 const styles = stylex.create({
   baseText: {
