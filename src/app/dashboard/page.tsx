@@ -34,8 +34,8 @@ export default function Home() {
   const router = useRouter();
   const { validFileAvailable, name } = useRunTrackingStore((state) => state);
 
-  const [sectionValue, setSectionValue] = React.useState<string | null>("runs");
   const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
+  const [sectionValue, setSectionValue] = React.useState<string | null>("runs");
 
   // If no valid file is available, redirect to "/"
   React.useEffect(() => {
