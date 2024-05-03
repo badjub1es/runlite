@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
+import Fade from "~/components/Transitions/Fade";
 import Stack from "~/components/Stack/Stack";
+import Background from "~/components/Background/Background";
 import { useRouter } from "next/navigation";
 import { formatDate } from "~/utils/formatDate";
 import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
-import Background from "~/components/Background/Background";
-import Fade from "~/components/Transitions/Fade";
 
 const styles = stylex.create({
   baseText: {

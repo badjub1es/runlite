@@ -1,10 +1,10 @@
 import React from "react";
-import GradientProgress from "~/components/GradientProgress/GradientProgress";
-import { Fade, Stack } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
-import { AppRoute } from "~/types/AppRoute/AppRoute";
 import Background from "~/components/Background/Background";
+import GradientProgress from "~/components/GradientProgress/GradientProgress";
+import { AppRoute } from "~/types/AppRoute/AppRoute";
+import { useRouter } from "next/navigation";
+import { Fade, Stack } from "@mui/material";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 export default function DashboardLoading() {
   const router = useRouter();
