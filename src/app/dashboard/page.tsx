@@ -4,6 +4,7 @@ import React from "react";
 import Fade from "~/components/Transitions/Fade";
 import Stack from "~/components/Stack/Stack";
 import Background from "~/components/Background/Background";
+import SectionToggle from "./SectionToggle/SectionToggle";
 import { useRouter } from "next/navigation";
 import { formatDate } from "~/utils/formatDate";
 import { getGreeting } from "~/utils/getGreeting";
@@ -31,7 +32,8 @@ export default function Home() {
   const router = useRouter();
   const { validFileAvailable, name } = useRunTrackingStore((state) => state);
 
-  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [sectionValue, setSectionValue] = React.useState<string | null>("runs");
+  const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
 
   // If no valid file is available, redirect to "/"
   React.useEffect(() => {
@@ -64,6 +66,7 @@ export default function Home() {
           <p {...stylex.props(styles.baseText, styles.largeText)}>
             {getGreeting(name, currentDate)}
           </p>
+          <SectionToggle value={sectionValue} setValue={setSectionValue} />
         </Stack>
       </Fade>
     </Background>
