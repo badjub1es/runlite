@@ -50,7 +50,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Background justifyContent="flex-start" padding="4rem 0rem 0rem 0rem">
+    <Background justifyContent="flex-start">
       <Fade in timeout={2000}>
         <Stack
           direction="column"

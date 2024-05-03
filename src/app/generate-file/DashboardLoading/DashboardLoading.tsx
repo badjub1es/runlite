@@ -25,7 +25,9 @@ export default function DashboardLoading() {
     <Background>
       <Fade in timeout={2000}>
         <Stack direction="column" justifyContent="center" alignItems="center">
-          <h1 style={{ color: "white" }}>Getting your dashboard ready . . .</h1>
+          <h1 style={{ color: "white", textAlign: "center" }}>
+            Getting your dashboard ready . . .
+          </h1>
           <GradientProgress />
         </Stack>
       </Fade>

@@ -4,7 +4,6 @@ import { JustifyContentValues } from "~/types/JustifyContent/JustifyContentValue
 import * as stylex from "@stylexjs/stylex";
 
 interface BackgroundProps extends PropsWithChildren {
-  padding?: string;
   alignItems?: AlignItemsValues;
   justifyContent?: JustifyContentValues;
 }
@@ -12,6 +11,7 @@ interface BackgroundProps extends PropsWithChildren {
 const styles = stylex.create({
   background: {
     display: "flex",
+    padding: "4rem 10vw",
     alignItems: "center",
     justifyContent: "center",
     minHeight: "100vh",
@@ -23,7 +23,6 @@ const styles = stylex.create({
 export default function Background({
   children,
   alignItems,
-  padding,
   justifyContent,
 }: BackgroundProps) {
   return (
@@ -32,7 +31,6 @@ export default function Background({
       style={{
         [alignItems ? "alignItems" : ""]: alignItems,
         [justifyContent ? "justifyContent" : ""]: justifyContent,
-        [padding ? "padding" : ""]: padding,
       }}
     >
       {children}
