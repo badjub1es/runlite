@@ -4,7 +4,7 @@ import { JustifyContentValues } from "~/types/JustifyContent/JustifyContentValue
 import * as stylex from "@stylexjs/stylex";
 
 interface BackgroundProps extends PropsWithChildren {
-  padding: string;
+  padding?: string;
   alignItems?: AlignItemsValues;
   justifyContent?: JustifyContentValues;
 }
