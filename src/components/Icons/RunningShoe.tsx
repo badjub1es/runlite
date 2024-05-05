@@ -1,15 +1,19 @@
+import { ThemeColors } from "~/types/Colors/ThemeColors";
+
 interface RunningShoeProps {
   width?: string;
   height?: string;
+  htmlColor?: string;
 }
 
 export default function RunningShoe({
   width = "50px",
   height = "50px",
+  htmlColor = ThemeColors.YELLOW,
 }: RunningShoeProps) {
   return (
     <svg
-      fill="#ffffff"
+      fill={htmlColor}
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +22,7 @@ export default function RunningShoe({
       height={height}
       viewBox="0 0 567.639 567.639"
       xmlSpace="preserve"
-      stroke="#ffffff"
+      stroke={htmlColor}
     >
       <g id="SVGRepo_bgCarrier" stroke-width="0" />
 

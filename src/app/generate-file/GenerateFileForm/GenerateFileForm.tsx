@@ -82,11 +82,11 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
       fadeTimeout={2000}
       backgroundColor={ThemeColors.GLASS}
     >
-      <CardTitle color="white">
+      <CardTitle color={ThemeColors.WHITE}>
         Enter some <span {...stylex.props(styles.yellowText)}>information</span>{" "}
         to get started 🚀
       </CardTitle>
-      <Divider color="white" />
+      <Divider color={ThemeColors.WHITE} />
       <Fade in={fadeIn} timeout={3000}>
         <div>
           <Stack direction="column" spacing={20}>
@@ -106,7 +106,10 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               placeholder="Name or username *"
             />
             <FormControl>
-              <label htmlFor="radio-button-group" style={{ color: "white" }}>
+              <label
+                htmlFor="radio-button-group"
+                style={{ color: ThemeColors.WHITE }}
+              >
                 Metric preference
               </label>
               <RadioGroup
@@ -119,12 +122,12 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               >
                 <FormControlLabel
                   value="mi"
-                  sx={{ color: "white" }}
+                  sx={{ color: ThemeColors.WHITE }}
                   control={
                     <Radio
                       size="small"
                       sx={{
-                        color: "white",
+                        color: ThemeColors.WHITE,
                         "&.Mui-checked": { color: ThemeColors.YELLOW },
                       }}
                     />
@@ -133,12 +136,12 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                 />
                 <FormControlLabel
                   value="km"
-                  sx={{ color: "white" }}
+                  sx={{ color: ThemeColors.WHITE }}
                   control={
                     <Radio
                       size="small"
                       sx={{
-                        color: "white",
+                        color: ThemeColors.WHITE,
                         "&.Mui-checked": { color: ThemeColors.YELLOW },
                       }}
                     />

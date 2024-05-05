@@ -1,4 +1,5 @@
 import RunningShoe from "~/components/Icons/RunningShoe";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { DirectionsRun } from "@mui/icons-material";
 import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 
@@ -26,12 +27,22 @@ export default function SectionToggle({ value, setValue }: SectionToggleProps) {
     >
       <Tooltip title="Run log">
         <ToggleButton value="runs" key="runs">
-          <DirectionsRun htmlColor="white" />
+          <DirectionsRun
+            htmlColor={
+              value === "runs" ? ThemeColors.YELLOW : ThemeColors.WHITE
+            }
+          />
         </ToggleButton>
       </Tooltip>
       <Tooltip title="Shoes">
         <ToggleButton value="shoes" key="shoes">
-          <RunningShoe width="24px" height="24px" />
+          <RunningShoe
+            width="24px"
+            height="24px"
+            htmlColor={
+              value === "shoes" ? ThemeColors.YELLOW : ThemeColors.WHITE
+            }
+          />
         </ToggleButton>
       </Tooltip>
     </ToggleButtonGroup>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Fade } from "@mui/material";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 import * as stylex from "@stylexjs/stylex";
 
 interface CardProps extends React.PropsWithChildren {
@@ -23,7 +24,7 @@ export default function Card({
   fade = false,
   fadeIn = true,
   fadeTimeout = 1000,
-  backgroundColor = "white",
+  backgroundColor = ThemeColors.WHITE,
 }: CardProps) {
   if (fade) {
     return (
