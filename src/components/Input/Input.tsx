@@ -1,8 +1,9 @@
 import React, { type ChangeEvent } from "react";
+import Stack from "../Stack/Stack";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { type InputType } from "~/types/Input/InputType";
 import { type InputValue } from "~/types/Input/InputValue";
 import * as stylex from "@stylexjs/stylex";
-import Stack from "../Stack/Stack";
 
 interface InputProps {
   id?: string;
@@ -65,7 +66,7 @@ export default function Input({
   step = 1,
   autoFocus = false,
   backgroundColor = "transparent",
-  color = "white",
+  color = ThemeColors.WHITE,
   border = "1px solid white",
   width = "100%",
   label,
