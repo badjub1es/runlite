@@ -4,7 +4,9 @@ import React from "react";
 import Fade from "~/components/Transitions/Fade";
 import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
+import RunSection from "./RunSection/RunSection";
 import Background from "~/components/Background/Background";
+import ShoeSection from "./ShoeSection/ShoeSection";
 import SectionToggle from "./SectionToggle/SectionToggle";
 import { useRouter } from "next/navigation";
 import { formatDate } from "~/utils/formatDate";
@@ -56,23 +58,27 @@ export default function Home() {
   return (
     <Background justifyContent="flex-start">
       <Fade in timeout={2000}>
-        <Card backgroundColor={ThemeColors.GLASS}>
-          <Stack
-            direction="column"
-            spacing={15}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <p {...stylex.props(styles.baseText, styles.smallText)}>
-              {formatDate(currentDate)}
-            </p>
-            <p {...stylex.props(styles.baseText, styles.largeText)}>
-              {getGreeting(currentDate)}
-              <span style={{ color: ThemeColors.YELLOW }}>{name}</span>
-            </p>
-            <SectionToggle value={sectionValue} setValue={setSectionValue} />
-          </Stack>
-        </Card>
+        <Stack direction="column" spacing={30}>
+          <Card backgroundColor={ThemeColors.GLASS}>
+            <Stack
+              direction="column"
+              spacing={15}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <p {...stylex.props(styles.baseText, styles.smallText)}>
+                {formatDate(currentDate)}
+              </p>
+              <p {...stylex.props(styles.baseText, styles.largeText)}>
+                {getGreeting(currentDate)}
+                <span style={{ color: ThemeColors.YELLOW }}>{name}</span>
+              </p>
+              <SectionToggle value={sectionValue} setValue={setSectionValue} />
+            </Stack>
+          </Card>
+          {sectionValue === "shoes" && <ShoeSection />}
+          {sectionValue === "runs" && <RunSection />}
+        </Stack>
       </Fade>
     </Background>
   );
