@@ -29,27 +29,27 @@ interface InputProps {
 }
 
 const styles = stylex.create({
-  input: {
+  input: (textColor: ThemeColors, secondaryColor: ThemeColors) => ({
     padding: ".5rem",
     borderRadius: "4px",
     "::placeholder": {
-      color: "white",
+      color: textColor,
       fontStyle: "italic",
     },
     ":focus": {
-      outline: "1px solid #fef08a",
+      outline: `1px solid ${secondaryColor}`,
     },
-  },
-  helperText: {
-    color: "white",
+  }),
+  helperText: (textColor: ThemeColors) => ({
+    color: textColor,
     fontSize: ".8rem",
     marginLeft: ".75rem",
-  },
-  placeholderError: {
+  }),
+  placeholderError: (errorColor: ThemeColors) => ({
     "::placeholder": {
-      color: "red",
+      color: errorColor,
     },
-  },
+  }),
 });
 
 export default function Input({
@@ -86,7 +86,10 @@ export default function Input({
           {label}
         </label>
         <input
-          {...stylex.props(styles.input, error && styles.placeholderError)}
+          {...stylex.props(
+            styles.input(ThemeColors.WHITE, ThemeColors.SECONDARY),
+            error && styles.placeholderError(ThemeColors.ERROR)
+          )}
           style={{
             [disabled ? "cursor" : ""]: "not-allowed",
             backgroundColor,
@@ -110,7 +113,7 @@ export default function Input({
         />
         {helperText && (
           <span
-            {...stylex.props(styles.helperText)}
+            {...stylex.props(styles.helperText(ThemeColors.WHITE))}
             style={{
               [error ? "color" : ""]: "red",
             }}
@@ -123,7 +126,7 @@ export default function Input({
   }
   return (
     <input
-      {...stylex.props(styles.input)}
+      {...stylex.props(styles.input(ThemeColors.WHITE, ThemeColors.SECONDARY))}
       style={{
         [disabled ? "cursor" : ""]: "not-allowed",
         backgroundColor,

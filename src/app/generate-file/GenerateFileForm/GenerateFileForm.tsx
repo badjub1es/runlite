@@ -23,9 +23,9 @@ interface GenerateFileFormProps {
 }
 
 const styles = stylex.create({
-  yellowText: {
-    color: "#fef08a",
-  },
+  secondaryText: (textColor: ThemeColors) => ({
+    color: textColor,
+  }),
 });
 
 export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
@@ -83,7 +83,10 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
       backgroundColor={ThemeColors.GLASS}
     >
       <CardTitle color={ThemeColors.WHITE}>
-        Enter some <span {...stylex.props(styles.yellowText)}>information</span>{" "}
+        Enter some{" "}
+        <span {...stylex.props(styles.secondaryText(ThemeColors.SECONDARY))}>
+          information
+        </span>{" "}
         to get started 🚀
       </CardTitle>
       <Divider color={ThemeColors.WHITE} />
@@ -128,7 +131,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                       size="small"
                       sx={{
                         color: ThemeColors.WHITE,
-                        "&.Mui-checked": { color: ThemeColors.YELLOW },
+                        "&.Mui-checked": { color: ThemeColors.SECONDARY },
                       }}
                     />
                   }
@@ -142,7 +145,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                       size="small"
                       sx={{
                         color: ThemeColors.WHITE,
-                        "&.Mui-checked": { color: ThemeColors.YELLOW },
+                        "&.Mui-checked": { color: ThemeColors.SECONDARY },
                       }}
                     />
                   }
@@ -157,7 +160,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               sx={{
                 backgroundColor: ThemeColors.GLASS,
                 "&:hover": {
-                  backgroundColor: ThemeColors.YELLOW,
+                  backgroundColor: ThemeColors.SECONDARY,
                   color: "black",
                 },
               }}

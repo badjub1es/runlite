@@ -71,7 +71,7 @@ export default function Home() {
               </p>
               <p {...stylex.props(styles.baseText, styles.largeText)}>
                 {getGreeting(currentDate)}
-                <span style={{ color: ThemeColors.YELLOW }}>{name}</span>
+                <span style={{ color: ThemeColors.SECONDARY }}>{name}</span>
               </p>
               <SectionToggle value={sectionValue} setValue={setSectionValue} />
             </Stack>
