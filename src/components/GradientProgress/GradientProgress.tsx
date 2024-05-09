@@ -1,5 +1,6 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 export default function GradientProgress() {
   return (
@@ -7,8 +8,8 @@ export default function GradientProgress() {
       <svg width={0} height={0}>
         <defs>
           <linearGradient id="my_gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#e01cd5" />
-            <stop offset="100%" stopColor="#1CB5E0" />
+            <stop offset="0%" stopColor={ThemeColors.WHITE} />
+            <stop offset="100%" stopColor={ThemeColors.SECONDARY} />
           </linearGradient>
         </defs>
       </svg>
