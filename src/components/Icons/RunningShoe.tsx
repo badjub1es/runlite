@@ -9,7 +9,7 @@ interface RunningShoeProps {
 export default function RunningShoe({
   width = "50px",
   height = "50px",
-  htmlColor = ThemeColors.YELLOW,
+  htmlColor = ThemeColors.SECONDARY,
 }: RunningShoeProps) {
   return (
     <svg

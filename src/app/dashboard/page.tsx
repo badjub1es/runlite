@@ -30,6 +30,9 @@ const styles = stylex.create({
   largeText: {
     fontSize: "2.5rem",
   },
+  secondarySpan: (color: ThemeColors) => ({
+    color,
+  }),
 });
 
 export default function Home() {
@@ -71,7 +74,11 @@ export default function Home() {
               </p>
               <p {...stylex.props(styles.baseText, styles.largeText)}>
                 {getGreeting(currentDate)}
-                <span style={{ color: ThemeColors.YELLOW }}>{name}</span>
+                <span
+                  {...stylex.props(styles.secondarySpan(ThemeColors.SECONDARY))}
+                >
+                  {name}
+                </span>
               </p>
               <SectionToggle value={sectionValue} setValue={setSectionValue} />
             </Stack>

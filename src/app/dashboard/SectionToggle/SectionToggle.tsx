@@ -29,7 +29,7 @@ export default function SectionToggle({ value, setValue }: SectionToggleProps) {
         <ToggleButton value="runs" key="runs">
           <DirectionsRun
             htmlColor={
-              value === "runs" ? ThemeColors.YELLOW : ThemeColors.WHITE
+              value === "runs" ? ThemeColors.SECONDARY : ThemeColors.WHITE
             }
           />
         </ToggleButton>
@@ -40,7 +40,7 @@ export default function SectionToggle({ value, setValue }: SectionToggleProps) {
             width="24px"
             height="24px"
             htmlColor={
-              value === "shoes" ? ThemeColors.YELLOW : ThemeColors.WHITE
+              value === "shoes" ? ThemeColors.SECONDARY : ThemeColors.WHITE
             }
           />
         </ToggleButton>

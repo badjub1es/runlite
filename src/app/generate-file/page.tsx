@@ -8,11 +8,15 @@ import { Fade } from "@mui/material";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import Background from "~/components/Background/Background";
+import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 const stylexStyles = stylex.create({
   container: {
     maxWidth: "80vw",
   },
+  secondarySpan: (color: ThemeColors) => ({
+    color,
+  }),
 });
 
 export default function Home() {
@@ -42,7 +46,13 @@ export default function Home() {
               <Stack spacing={10} justifyContent="center" alignItems="center">
                 <h1 className={styles.subTitle}>
                   Generate a new file to track your{" "}
-                  <span className={styles.yellowSpan}>running</span>
+                  <span
+                    {...stylex.props(
+                      stylexStyles.secondarySpan(ThemeColors.SECONDARY)
+                    )}
+                  >
+                    running
+                  </span>
                 </h1>
                 <img
                   height={75}

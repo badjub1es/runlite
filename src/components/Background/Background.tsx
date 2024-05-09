@@ -16,7 +16,7 @@ const styles = stylex.create({
     justifyContent: "center",
     minHeight: "100vh",
     flexDirection: "column",
-    backgroundImage: "linear-gradient(to bottom, #1d4ed8, #15162c)",
+    backgroundImage: "linear-gradient(to bottom, #101820, #192532)",
   },
 });
 
