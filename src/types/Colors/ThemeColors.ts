@@ -4,4 +4,5 @@ export enum ThemeColors {
   GLASS = "rgba(148, 163, 184, 0.2)",
   WHITE = "#FFFFFF",
   ERROR = "#FF0000",
+  TRANSPARENT = "transparent",
 }

@@ -18,8 +18,8 @@ interface InputProps {
   disabled?: boolean;
   step?: number;
   autoFocus?: boolean;
-  backgroundColor?: string;
-  color?: string;
+  backgroundColor?: ThemeColors;
+  color?: ThemeColors;
   border?: string;
   width?: string;
   label?: string;
@@ -29,9 +29,15 @@ interface InputProps {
 }
 
 const styles = stylex.create({
-  input: (textColor: ThemeColors, secondaryColor: ThemeColors) => ({
+  input: (
+    textColor: ThemeColors,
+    secondaryColor: ThemeColors,
+    backgroundColor: ThemeColors
+  ) => ({
+    color: textColor,
     padding: ".5rem",
     borderRadius: "4px",
+    backgroundColor,
     "::placeholder": {
       color: textColor,
       fontStyle: "italic",
@@ -40,16 +46,26 @@ const styles = stylex.create({
       outline: `1px solid ${secondaryColor}`,
     },
   }),
+  border: (style: string) => ({
+    border: style,
+  }),
   helperText: (textColor: ThemeColors) => ({
     color: textColor,
     fontSize: ".8rem",
     marginLeft: ".75rem",
   }),
-  placeholderError: (errorColor: ThemeColors) => ({
+  error: (errorColor: ThemeColors) => ({
+    border: `1px solid ${errorColor}`,
     "::placeholder": {
       color: errorColor,
     },
   }),
+  width: (width: string) => ({
+    width,
+  }),
+  disabled: {
+    cursor: "not-allowed",
+  },
 });
 
 export default function Input({
@@ -65,9 +81,9 @@ export default function Input({
   disabled = false,
   step = 1,
   autoFocus = false,
-  backgroundColor = "transparent",
+  backgroundColor = ThemeColors.TRANSPARENT,
   color = ThemeColors.WHITE,
-  border = "1px solid white",
+  border = `1px solid ${ThemeColors.WHITE}`,
   width = "100%",
   label,
   error = false,
@@ -87,16 +103,12 @@ export default function Input({
         </label>
         <input
           {...stylex.props(
-            styles.input(ThemeColors.WHITE, ThemeColors.SECONDARY),
-            error && styles.placeholderError(ThemeColors.ERROR)
+            styles.input(color, ThemeColors.SECONDARY, backgroundColor),
+            styles.width(width),
+            styles.border(error ? `1px solid ${ThemeColors.ERROR}` : border),
+            error && styles.error(ThemeColors.ERROR),
+            disabled && styles.disabled
           )}
-          style={{
-            [disabled ? "cursor" : ""]: "not-allowed",
-            backgroundColor,
-            color,
-            border: error ? "1px solid red" : border,
-            width,
-          }}
           id={id}
           name={name}
           type={type}
@@ -113,10 +125,9 @@ export default function Input({
         />
         {helperText && (
           <span
-            {...stylex.props(styles.helperText(ThemeColors.WHITE))}
-            style={{
-              [error ? "color" : ""]: "red",
-            }}
+            {...stylex.props(
+              styles.helperText(error ? ThemeColors.ERROR : ThemeColors.WHITE)
+            )}
           >
             {helperText}
           </span>
@@ -126,14 +137,17 @@ export default function Input({
   }
   return (
     <input
-      {...stylex.props(styles.input(ThemeColors.WHITE, ThemeColors.SECONDARY))}
-      style={{
-        [disabled ? "cursor" : ""]: "not-allowed",
-        backgroundColor,
-        color,
-        border,
-        width,
-      }}
+      {...stylex.props(
+        styles.input(
+          ThemeColors.WHITE,
+          ThemeColors.SECONDARY,
+          ThemeColors.TRANSPARENT
+        ),
+        styles.border(error ? `1px solid ${ThemeColors.ERROR}` : border),
+        styles.width(width),
+        error && styles.error(ThemeColors.ERROR),
+        disabled && styles.disabled
+      )}
       id={id}
       name={name}
       type={type}
