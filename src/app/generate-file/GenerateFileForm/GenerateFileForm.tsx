@@ -107,6 +107,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               value={name}
               onChange={handleNameChange}
               placeholder="Name or username *"
+              color={ThemeColors.WHITE}
             />
             <FormControl>
               <label
