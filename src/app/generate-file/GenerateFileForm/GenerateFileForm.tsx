@@ -17,6 +17,7 @@ import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { initialUserFile } from "~/types/UserFile/UserFile";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
+import StyledButton from "~/components/Button/StyledButton";
 
 interface GenerateFileFormProps {
   fadeIn: boolean;
@@ -154,20 +155,13 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                 />
               </RadioGroup>
             </FormControl>
-            <Button
+            <StyledButton
               disabled={buttonDisabled}
               variant="contained"
               onClick={generateAndDownloadJson}
-              sx={{
-                backgroundColor: ThemeColors.GLASS,
-                "&:hover": {
-                  backgroundColor: ThemeColors.SECONDARY,
-                  color: "black",
-                },
-              }}
             >
               Generate file
-            </Button>
+            </StyledButton>
           </Stack>
         </div>
       </Fade>
