@@ -107,7 +107,7 @@ export default function AddShoeModal({ open, onClose }: AddShoeModalProps) {
                 min="0"
               />
               <StyledButton
-                disabled={shoeNameError}
+                disabled={!shoeName || shoeNameError}
                 variant="contained"
                 onClick={handleSaveShoe}
               >
