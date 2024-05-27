@@ -5,7 +5,9 @@ import { ThemeColors } from "~/types/Colors/ThemeColors";
 const StyledButton: React.FC<ButtonProps> = (props) => {
   return (
     <Button
+      {...props}
       sx={{
+        ...props.sx,
         backgroundColor: ThemeColors.GLASS,
         "&:hover": {
           backgroundColor: ThemeColors.SECONDARY,
@@ -14,7 +16,6 @@ const StyledButton: React.FC<ButtonProps> = (props) => {
         fontFamily:
           "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
       }}
-      {...props}
     >
       {props.children}
     </Button>
