@@ -3,13 +3,12 @@ import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
 import CardTitle from "~/components/Card/CardTitle";
 import StyledButton from "~/components/Button/StyledButton";
-import ModalContentContainer from "~/components/Modal/ModalContentContainer";
-import { Fade, Modal } from "@mui/material";
+import AddShoeModal from "./AddShoeModal/AddShoeModal";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
-import Input from "~/components/Input/Input";
-import Divider from "~/components/Card/Divider";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 export default function ShoeSection() {
+  const shoes = useRunTrackingStore((state) => state.shoes);
   const [modalOpen, setModalOpen] = React.useState(false);
   return (
     <Card backgroundColor={ThemeColors.PRIMARY}>
@@ -24,49 +23,15 @@ export default function ShoeSection() {
             Create new shoe
           </StyledButton>
         </Stack>
-        {/* TODO: Add Shoe UI */}
-        <Modal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
-          style={{ backdropFilter: "blur(5px)" }}
-        >
-          <Fade in={modalOpen}>
-            <div>
-              <ModalContentContainer>
-                <CardTitle color={ThemeColors.WHITE} id="parent-modal-title">
-                  Shoe details
-                </CardTitle>
-                <Divider color={ThemeColors.SECONDARY} />
-                <Stack direction="column" spacing={20}>
-                  <Input
-                    required
-                    label="Shoe name"
-                    error={false}
-                    id="shoe-name-input"
-                    value=""
-                    onChange={() => null}
-                    placeholder="Shoe name"
-                    color={ThemeColors.WHITE}
-                  />
-                  <Input
-                    required
-                    type="number"
-                    label="Existing distance"
-                    error={false}
-                    id="existing-distance-input"
-                    value={0}
-                    onChange={() => null}
-                    placeholder="Existing distance"
-                    color={ThemeColors.WHITE}
-                  />
-                  <StyledButton variant="contained">Save shoe</StyledButton>
-                </Stack>
-              </ModalContentContainer>
-            </div>
-          </Fade>
-        </Modal>
+        <AddShoeModal open={modalOpen} onClose={() => setModalOpen(false)} />
+        {/* TODO: Replace with shoe cards */}
+        {shoes?.map((shoe) => (
+          <>
+            <div>{shoe.id}</div>
+            <div>{shoe.name}</div>
+            <div>{shoe.distance}</div>
+          </>
+        ))}
       </Stack>
     </Card>
   );

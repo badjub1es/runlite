@@ -14,6 +14,7 @@ import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
+import { NotificationProvider } from "~/providers/NotificationProvider";
 
 const styles = stylex.create({
   baseText: {
@@ -59,34 +60,41 @@ export default function Home() {
   }, []);
 
   return (
-    <Background justifyContent="flex-start">
-      <Fade in timeout={2000}>
-        <Stack direction="column" spacing={30}>
-          <Card backgroundColor={ThemeColors.PRIMARY}>
-            <Stack
-              direction="column"
-              spacing={15}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <p {...stylex.props(styles.baseText, styles.smallText)}>
-                {formatDate(currentDate)}
-              </p>
-              <p {...stylex.props(styles.baseText, styles.largeText)}>
-                {getGreeting(currentDate)}
-                <span
-                  {...stylex.props(styles.secondarySpan(ThemeColors.SECONDARY))}
-                >
-                  {name}
-                </span>
-              </p>
-              <SectionToggle value={sectionValue} setValue={setSectionValue} />
-            </Stack>
-          </Card>
-          {sectionValue === "shoes" && <ShoeSection />}
-          {sectionValue === "runs" && <RunSection />}
-        </Stack>
-      </Fade>
-    </Background>
+    <NotificationProvider>
+      <Background justifyContent="flex-start">
+        <Fade in timeout={2000}>
+          <Stack direction="column" spacing={30}>
+            <Card backgroundColor={ThemeColors.PRIMARY}>
+              <Stack
+                direction="column"
+                spacing={15}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <p {...stylex.props(styles.baseText, styles.smallText)}>
+                  {formatDate(currentDate)}
+                </p>
+                <p {...stylex.props(styles.baseText, styles.largeText)}>
+                  {getGreeting(currentDate)}
+                  <span
+                    {...stylex.props(
+                      styles.secondarySpan(ThemeColors.SECONDARY)
+                    )}
+                  >
+                    {name}
+                  </span>
+                </p>
+                <SectionToggle
+                  value={sectionValue}
+                  setValue={setSectionValue}
+                />
+              </Stack>
+            </Card>
+            {sectionValue === "shoes" && <ShoeSection />}
+            {sectionValue === "runs" && <RunSection />}
+          </Stack>
+        </Fade>
+      </Background>
+    </NotificationProvider>
   );
 }

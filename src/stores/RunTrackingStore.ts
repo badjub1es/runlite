@@ -1,5 +1,6 @@
 import { createStore } from "zustand/vanilla";
 import { MetricType } from "~/types/MetricType/MetricType";
+import { Shoe } from "~/types/Shoe/Shoe";
 
 export type RunTrackingState = {
   fileDownload: string;
@@ -7,6 +8,7 @@ export type RunTrackingState = {
   validFileAvailable: boolean;
   name: string;
   metricType: MetricType;
+  shoes: Shoe[];
 };
 
 export type RunTrackingActions = {
@@ -15,6 +17,8 @@ export type RunTrackingActions = {
   setValidFileAvailable: (available: boolean) => void;
   setName: (name: string) => void;
   setMetricType: (metricType: MetricType) => void;
+  setShoes: (shoes: Shoe[]) => void;
+  addShoe: (shoe: Shoe) => void;
 };
 
 export type RunTrackingStore = RunTrackingState & RunTrackingActions;
@@ -25,6 +29,7 @@ export const initRunTrackingStore = (): RunTrackingState => ({
   validFileAvailable: false,
   name: "",
   metricType: MetricType.MI,
+  shoes: [],
 });
 
 export const defaultInitState: RunTrackingState = {
@@ -33,6 +38,7 @@ export const defaultInitState: RunTrackingState = {
   validFileAvailable: false,
   name: "",
   metricType: MetricType.MI,
+  shoes: [],
 };
 
 export const createRunTrackingStore = (
@@ -64,6 +70,16 @@ export const createRunTrackingStore = (
       set((state) => ({
         ...state,
         metricType,
+      })),
+    setShoes: (shoes: Shoe[]) =>
+      set((state) => ({
+        ...state,
+        shoes,
+      })),
+    addShoe: (shoe: Shoe) =>
+      set((state) => ({
+        ...state,
+        shoes: [...state.shoes, shoe],
       })),
   }));
 };
