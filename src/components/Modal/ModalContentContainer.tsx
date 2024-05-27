@@ -13,6 +13,7 @@ const styles = stylex.create({
     boxShadow: 24,
     padding: "1.2rem",
     borderRadius: "30px",
+    maxWidth: "80vw",
   }),
 });
 
@@ -24,7 +25,7 @@ interface ModalContentContainerProps extends React.PropsWithChildren {
 const ModalContentContainer: React.FC<ModalContentContainerProps> = ({
   children,
   width = 400,
-  backgroundColor = ThemeColors.GLASS,
+  backgroundColor = ThemeColors.PRIMARY,
 }) => {
   return (
     <div {...stylex.props(styles.modalContainer(width, backgroundColor))}>
