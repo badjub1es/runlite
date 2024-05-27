@@ -5,7 +5,7 @@ import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 export default function RunSection() {
   return (
-    <Card backgroundColor={ThemeColors.GLASS}>
+    <Card backgroundColor={ThemeColors.PRIMARY}>
       <Stack direction="column" justifyContent="flex-start">
         <CardTitle color={ThemeColors.WHITE}>Runs</CardTitle>
         {/* TODO: Add Run UI */}

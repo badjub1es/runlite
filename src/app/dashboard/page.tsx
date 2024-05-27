@@ -62,7 +62,7 @@ export default function Home() {
     <Background justifyContent="flex-start">
       <Fade in timeout={2000}>
         <Stack direction="column" spacing={30}>
-          <Card backgroundColor={ThemeColors.GLASS}>
+          <Card backgroundColor={ThemeColors.PRIMARY}>
             <Stack
               direction="column"
               spacing={15}
