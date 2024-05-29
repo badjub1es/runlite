@@ -54,6 +54,7 @@ export default function AddShoeModal({ open, onClose }: AddShoeModalProps) {
       id: uuidv4(),
       name: shoeName,
       distance: existingDistance,
+      createdAt: new Date(),
     };
     addShoe(shoe);
     notifySuccess(`"${shoeName}" successfully saved`);

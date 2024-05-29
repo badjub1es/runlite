@@ -7,16 +7,19 @@ interface CardProps extends React.PropsWithChildren {
   fade?: boolean;
   fadeIn?: boolean;
   fadeTimeout?: number;
-  backgroundColor?: string;
+  backgroundColor?: ThemeColors;
+  width?: string;
 }
 
 const styles = stylex.create({
-  card: {
+  card: (width: string, backgroundColor: ThemeColors) => ({
     padding: "1.2rem",
     borderRadius: "30px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     maxWidth: "80vw",
-  },
+    width,
+    backgroundColor,
+  }),
 });
 
 export default function Card({
@@ -25,11 +28,12 @@ export default function Card({
   fadeIn = true,
   fadeTimeout = 1000,
   backgroundColor = ThemeColors.WHITE,
+  width = "",
 }: CardProps) {
   if (fade) {
     return (
       <Fade in={fadeIn} timeout={fadeTimeout}>
-        <div {...stylex.props(styles.card)} style={{ backgroundColor }}>
+        <div {...stylex.props(styles.card(width, backgroundColor))}>
           {children}
         </div>
       </Fade>
@@ -37,8 +41,6 @@ export default function Card({
   }
 
   return (
-    <div {...stylex.props(styles.card)} style={{ backgroundColor }}>
-      {children}
-    </div>
+    <div {...stylex.props(styles.card(width, backgroundColor))}>{children}</div>
   );
 }

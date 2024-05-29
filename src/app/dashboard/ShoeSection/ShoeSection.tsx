@@ -2,6 +2,7 @@ import React from "react";
 import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
 import Divider from "~/components/Card/Divider";
+import ShoeCard from "~/components/ShoeCard/ShoeCard";
 import CardTitle from "~/components/Card/CardTitle";
 import StyledButton from "~/components/Button/StyledButton";
 import AddShoeModal from "./AddShoeModal/AddShoeModal";
@@ -10,6 +11,7 @@ import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 export default function ShoeSection() {
   const shoes = useRunTrackingStore((state) => state.shoes);
+  const metricType = useRunTrackingStore((state) => state.metricType);
   const [modalOpen, setModalOpen] = React.useState(false);
   return (
     <Card backgroundColor={ThemeColors.PRIMARY}>
@@ -27,14 +29,11 @@ export default function ShoeSection() {
           </StyledButton>
         </Stack>
         <Divider color={ThemeColors.SECONDARY} />
-        {/* TODO: Replace with shoe cards */}
-        {shoes?.map((shoe) => (
-          <>
-            <div>{shoe.id}</div>
-            <div>{shoe.name}</div>
-            <div>{shoe.distance}</div>
-          </>
-        ))}
+        <Stack direction="column" spacing={20}>
+          {shoes?.map((shoe) => (
+            <ShoeCard shoe={shoe} metricType={metricType} />
+          ))}
+        </Stack>
       </Stack>
     </Card>
   );
