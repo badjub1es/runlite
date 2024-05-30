@@ -31,7 +31,7 @@ export default function ShoeSection() {
         <Divider color={ThemeColors.SECONDARY} />
         <Stack direction="column" spacing={20}>
           {shoes?.map((shoe) => (
-            <ShoeCard shoe={shoe} metricType={metricType} />
+            <ShoeCard key={shoe.id} shoe={shoe} metricType={metricType} />
           ))}
         </Stack>
       </Stack>
